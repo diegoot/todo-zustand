@@ -1,5 +1,9 @@
 # Todo Zustand
 
+## Live Demo
+
+[https://todo-zustand-sepia.vercel.app/](https://todo-zustand-sepia.vercel.app/)
+
 ## Description
 
 A Kanban-style task manager for organizing work across three stages — **New**, **In Progress**, and **Done**. Tasks can be created, moved between columns, and persist across browser sessions.
