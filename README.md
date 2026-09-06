@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# Todo Zustand
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Description
 
-Currently, two official plugins are available:
+A Kanban-style task manager for organizing work across three stages — **New**, **In Progress**, and **Done**. Tasks can be created, moved between columns, and persist across browser sessions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The project's focus is state management architecture: application state lives in a single Zustand store, colocated with pure helper functions that encapsulate the task-creation and status-transition logic, and is automatically persisted to `localStorage` via Zustand's `persist` middleware.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**
+- **TypeScript**
+- **Vite** — build tool and dev server
+- **Zustand** — global state management, with the `persist` middleware for localStorage persistence
+- **Tailwind CSS 4** — styling
+- **oxlint** — linting
 
-## Expanding the Oxlint configuration
+## Project Structure
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+├── features/tasks/        # UI layer: task board, columns, cards, and creation form
+│   ├── TaskBoard.tsx
+│   └── components/
+├── store/tasks/            # State layer: Zustand store and its supporting logic
+│   ├── useTaskStore.ts     # Store definition (state + actions), wrapped in `persist`
+│   └── utils/               # Pure helpers used by the store (task creation, status transitions)
+└── App.tsx                 # Root layout
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Commands
+
+| Command           | Description                          |
+| ------------------ | ------------------------------------- |
+| `npm run dev`      | Start the development server          |
+| `npm run build`    | Type-check and build for production   |
+| `npm run preview`  | Preview the production build locally  |
+| `npm run lint`     | Run oxlint                            |
