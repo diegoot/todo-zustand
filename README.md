@@ -4,7 +4,7 @@
 
 A Kanban-style task manager for organizing work across three stages — **New**, **In Progress**, and **Done**. Tasks can be created, moved between columns, and persist across browser sessions.
 
-The project's focus is state management architecture: application state lives in a single Zustand store, colocated with pure helper functions that encapsulate the task-creation and status-transition logic, and is automatically persisted to `localStorage` via Zustand's `persist` middleware.
+The project's focus is state management architecture: application state lives in a single Zustand store, colocated with pure helper functions that encapsulate the task-creation and status-transition logic, and is automatically persisted to `localStorage` via Zustand's `persist` middleware. The state layer (store actions and pure helpers) is covered by unit tests using Vitest.
 
 ## Tech Stack
 
@@ -14,6 +14,7 @@ The project's focus is state management architecture: application state lives in
 - **Zustand** — global state management, with the `persist` middleware for localStorage persistence
 - **Tailwind CSS 4** — styling
 - **oxlint** — linting
+- **Vitest** — unit testing
 
 ## Project Structure
 
@@ -36,3 +37,4 @@ src/
 | `npm run build`    | Type-check and build for production   |
 | `npm run preview`  | Preview the production build locally  |
 | `npm run lint`     | Run oxlint                            |
+| `npm run test`     | Run the unit test suite               |
