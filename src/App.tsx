@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import TaskForm from './features/tasks/components/TaskForm'
 import TaskBoard from './features/tasks/TaskBoard'
 import { useThemeStore } from './store/theme/useThemeStore'
@@ -7,7 +7,7 @@ function App() {
   const theme = useThemeStore((state) => state.theme)
   const toggleTheme = useThemeStore((state) => state.toggleTheme)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
 
@@ -17,7 +17,7 @@ function App() {
         <button
           type="button"
           onClick={toggleTheme}
-          aria-label="Toggle theme"
+          aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
           className="absolute right-0 top-0 rounded-lg border border-slate-200 bg-white px-3 py-2 text-lg shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
         >
           {theme === 'light' ? '🌙' : '☀'}
