@@ -26,4 +26,24 @@ describe("useTaskStore", () => {
         const [updated] = useTaskStore.getState().tasks;
         expect(updated.status).toBe("in-progress");
     });
+
+    it("editTask updates the matching task's description", () => {
+        useTaskStore.getState().addTask({ description: "Write tests" });
+        const [task] = useTaskStore.getState().tasks;
+
+        useTaskStore.getState().editTask(task.id, "Write more tests");
+
+        const [updated] = useTaskStore.getState().tasks;
+        expect(updated).toMatchObject({ description: "Write more tests", status: "new" });
+    });
+
+    it("deleteTask removes the matching task", () => {
+        useTaskStore.getState().addTask({ description: "Write tests" });
+        const [task] = useTaskStore.getState().tasks;
+
+        useTaskStore.getState().deleteTask(task.id);
+
+        const { tasks } = useTaskStore.getState();
+        expect(tasks).toHaveLength(0);
+    });
 });
