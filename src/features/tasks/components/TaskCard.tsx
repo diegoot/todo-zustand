@@ -18,6 +18,9 @@ const TaskCard = ({ task }: TaskCardProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [description, setDescription] = useState(task.description);
+    // Escape unmounts the input, which fires a native blur -> commitEdit.
+    // This flag lets commitEdit detect that blur is a side effect of cancelling
+    // and bail out, instead of re-saving the discarded text.
     const cancelledRef = useRef(false);
 
     const startEditing = () => {
